@@ -1,74 +1,248 @@
+/* --- Base Styling --- */
 
-#intro{
-  height: clac(100vh- 4rem);
-  width: 100vw;
+#intro {
+  height: calc(100vh - 4rem);
   max-width: 75rem;
   margin: 0 auto;
   overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.bg{
+
+.bg {
   position: absolute;
   top: -1rem;
   right: 0;
   z-index: -1;
   object-fit: cover;
   height: 100vh;
+  opacity: 0.2;
+  pointer-events: none;
 }
 
-.introContent{
-    height: 100vh;
-    width: 100vw;
-    padding: 2rem;
-    font-size: 3rem;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
+.introContent {
+  z-index: 1;
+  max-width: 50%;
+  animation: fadeIn 1s ease-in-out;
 }
 
-.hello{
-  font-size: 1.75rem;
-  font-weight: 100;
+.hello {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #ccc;
+  margin-bottom: 0.5rem;
 }
-.introName{
-     color: orangered;
+
+.introText {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
-.intropara{
-  font-size: medium;
-  font-weight: 100;
-  letter-spacing: 1px;
- 
+
+.introName {
+  color: #ff6b00;
+  text-shadow: 1px 1px 2px #000;
+  border-right: 2px solid #ff6b00; /* cursor effect for typing */
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blinkCaret 0.75s step-end infinite;
 }
-.btn{
-  background-color: orangered;
-  margin: 1rem 0;
-  padding: 0.75rem 1.5rem;
+
+@keyframes blinkCaret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.intropara {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-top: 0;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+/* --- Button Styling --- */
+.btn {
+  background: #ff6b00;
+  padding: 0.8rem 1.6rem;
   border: none;
   border-radius: 2rem;
-}
-.btnImg{
-  object-fit: cover;
-  margin: 0 0.25rem;
-  height: 1rem;
-}
-@media screen and (max-width:840px)
-{
- .bg{
-  right: -10vw;
- }
- .introContent{
-     font-size: 10vw;
- } 
- .hello{
-  font-size: 4.5vw;
- }
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 20px rgba(255, 107, 0, 0.4);
+  position: relative;
+  overflow: hidden;
 }
 
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(255, 107, 0, 0.6);
+}
 
-@media screen and (max-width:480px)
-{
- .bg{
-  right: -10vw;
- }
- 
+.btnImg {
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+.downloadIcon {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  animation: bounce 1.5s infinite;
+  user-select: none;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* --- PDF Modal Styling --- */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modalContent {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalClose {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.modalClose:hover {
+  color: #ff6b00;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+
+@media screen and (max-width: 840px) {
+  .introContent {
+    max-width: 100%;
+    font-size: 6vw;
+    padding: 1rem;
+  }
+
+  .introText {
+    font-size: 8vw;
+  }
+
+  .hello {
+    font-size: 5vw;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #intro {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .bg {
+    right: -20vw;
+    opacity: 0.1;
+  }
+
+  .introContent {
+    max-width: 100%;
+    font-size: 5vw;
+  }
+
+  .btn {
+    justify-content: center;
+  }
+}
+/* Layout for intro section */
+.introWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; /* spacing between image and text */
+  padding: 2rem;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+/* Image style */
+.introImage {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 16px;
+}
+
+/* Content on the right */
+.introContent {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* Make sure modal styles stay intact */
+.modalOverlay {
+  /* your existing styles */
 }

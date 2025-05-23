@@ -13,16 +13,16 @@ const Skill = () => {
          <div className="skillbar">
           <img src={uidesign} alt="Uidesign" className="skillBarImg" />
             <div className="skillbarText">
-              <h2>Appdesign</h2>
-              <p>I also start work in appdevlopment with help of andriod_devlopmetn/flutter</p>
+              <h2>ClassRoom_web</h2>
+              <p>https://github.com/Rish620/rishu_classroom</p>
             </div>
          </div>
 
          <div className="skillbar">
           <img src={webdesign} alt="webdesign" className="skillBarImg" />
             <div className="skillbarText">
-              <h2>Fronted/Backend</h2>
-              <p>I can work in fronted and as well as backend also</p>
+              <h2>Algorithm Visulaizer</h2>
+              <p>link:https://github.com/Rish620/algorithm</p>
             </div>
          </div>
 

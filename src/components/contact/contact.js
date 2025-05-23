@@ -5,8 +5,8 @@ import  Adobe from '../../assets/adobe.png';
 import  Microsoft from '../../assets/microsoft.png';
 import  Facebook from '../../assets/facebook.png';
 import FacebookIcon from '../../assets/facebook-icon.png';
-import TwitterIcon from '../../assets/twitter.png';
-import YouTubeIcon from '../../assets/youtube.png';
+import TwitterIcon from '../../assets/github.png';
+import YouTubeIcon from '../../assets/linkedin.png';
 import InstagramIcon from '../../assets/instagram.png';
 import emailjs from '@emailjs/browser';
 const Contact = () => {
@@ -51,10 +51,19 @@ const Contact = () => {
             <textarea   className='msg' name="message"  rows="5" placeholder='Your Message'></textarea>
             <button type='submit' value='send' className="submitBtn">Submit</button>
             <div className="links">
-              <img src={FacebookIcon} alt="facebook" className="link" />
-              <img src={TwitterIcon} alt="twitter" className="link" />
-              <img src={YouTubeIcon} alt="youtube" className="link" />
-              <img src={InstagramIcon} alt="Instagram" className="link" />
+             <a href="https://www.facebook.com/profile.php?id=100026215633007" target="_blank" rel="noopener noreferrer">
+  <img src={FacebookIcon} alt="facebook" className="link" />
+</a>
+<a href="https://github.com/Rish620" target="_blank" rel="noopener noreferrer">
+  <img src={TwitterIcon} alt="twitter" className="link" />
+</a>
+<a href="https://www.linkedin.com/in/rishu-saurabh-4901a7252/" target="_blank" rel="noopener noreferrer">
+  <img src={YouTubeIcon} alt="youtube" className="link" />
+</a>
+<a href="https://www.instagram.com/rishu__singh_______/" target="_blank" rel="noopener noreferrer">
+  <img src={InstagramIcon} alt="instagram" className="link" />
+</a>
+
             </div>
           </form>
       </div>

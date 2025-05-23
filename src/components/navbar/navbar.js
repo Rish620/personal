@@ -4,34 +4,95 @@ import logo from '../../assets/logo.png';
 import contact from '../../assets/contact.png';
 import { Link } from 'react-scroll';
 import menu from '../../assets/menu.png';
+
 const Navbar = () => {
-  const[showMenu, setshowMenu]= useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  // Close menu on link click helper
+  const handleLinkClick = () => setShowMenu(false);
+
+  // Scroll to contact section on button click
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-             <nav className="navbar">
-               <img src={logo} alt="logo" className='logo' />
-                  <div className="desktopmenu">
-                       <Link activeClass='active' to='intro'spy={true} smooth={true} offset={-100} duration={500} className="desktopmenuListItem">Home</Link>
-                       <Link  activeClass='active' to='skill'spy={true} smooth={true} offset={-100} duration={500} className="desktopmenuListItem">Clients</Link>
-                       <Link  activeClass='active' to='works'spy={true} smooth={true} offset={-100} duration={500} className="desktopmenuListItem">Abouts</Link>
-                       <Link  activeClass='active' to='clients'spy={true} smooth={true} offset={-100} duration={500} className="desktopmenuListItem">Portfolio</Link>
-                      </div>
-                      <button className="desktopMenuBtn" onClick={() => {
-                              document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
-                      }}>
-                      <img src={contact} alt="contact" className="desktopMenuImg" />Contact me
-                    </button>
+    <nav className="navbar" role="navigation" aria-label="Primary Navigation">
+      <img src={logo} alt="Logo" className="logo" tabIndex={0} />
 
+      <div className="desktopmenu" role="menubar">
+        {['intro', 'skill', 'works', 'clients'].map((section, i) => (
+          <Link
+            key={section}
+            activeClass="active"
+            to={section}
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}
+            className="desktopmenuListItem"
+            role="menuitem"
+            tabIndex={0}
+          >
+            {section === 'intro' ? 'Home' : section.charAt(0).toUpperCase() + section.slice(1)}
+          </Link>
+        ))}
+      </div>
 
-                     <img src={menu} alt="menu" className='mobMenu' onClick={()=>setshowMenu(!showMenu)}  />
-                     <div className="navMenu" style ={{
-                       display: showMenu? 'flex':'none'}}>
-                       <Link activeClass='active' to='intro'spy={true} smooth={true} offset={-100} duration={500} className="ListItem"onClick={()=>setshowMenu(false)}>Home</Link>
-                       <Link  activeClass='active' to='skill'spy={true} smooth={true} offset={-100} duration={500} className="ListItem" onClick={()=>setshowMenu(false)}>Clients</Link>
-                       <Link  activeClass='active' to='works'spy={true} smooth={true} offset={-100} duration={500} className="ListItem" onClick={()=>setshowMenu (false)}>Abouts</Link>
-                       <Link  activeClass='active' to='contact'spy={true} smooth={true} offset={-100} duration={500} className="ListItem" onClick={()=>setshowMenu (false)}>Contact</Link>
-                      </div>
-                  </nav>
-  )
-}
+      <button
+        className="desktopMenuBtn"
+        onClick={scrollToContact}
+        aria-label="Scroll to Contact section"
+      >
+        <img src={contact} alt="Contact icon" className="desktopMenuImg" />
+        Contact me
+      </button>
 
-export default Navbar
+      <img
+        src={menu}
+        alt="Toggle menu"
+        className="mobMenu"
+        onClick={() => setShowMenu(!showMenu)}
+        role="button"
+        aria-expanded={showMenu}
+        aria-controls="mobile-menu"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            setShowMenu(!showMenu);
+          }
+        }}
+      />
+
+      <div
+        id="mobile-menu"
+        className="navMenu"
+        style={{ display: showMenu ? 'flex' : 'none' }}
+        role="menu"
+      >
+        {['intro', 'skill', 'works', 'contact'].map((section) => (
+          <Link
+            key={section}
+            activeClass="active"
+            to={section}
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}
+            className="ListItem"
+            role="menuitem"
+            tabIndex={0}
+            onClick={handleLinkClick}
+          >
+            {section === 'intro' ? 'Home' : section.charAt(0).toUpperCase() + section.slice(1)}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -1,61 +1,142 @@
-.skill{
+:root {
+  /* Theme colors */
+  --color-bg-skillbar: #6c757d; /* muted gray */
+  --color-bg-skillbar-hover: #5a6268;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+
+  /* Typography */
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+
+  /* Border radius */
+  --border-radius: 0.5rem;
+
+  /* Transition */
+  --transition-speed: 0.3s;
+}
+
+.skill {
   overflow: hidden;
   width: 100vw;
   max-width: 65rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0 auto;
-}
-.skillTitle{
-  font-size: 3rem;
-  font-weight: 600;
-  padding-top: 3rem;
-  margin-bottom: 1.5rem;
+  font-family: var(--font-family-base);
+  color: var(--color-text-primary);
+  padding: var(--space-lg) 1rem;
+  box-sizing: border-box;
 }
 
-.skillDesc{
-  font-weight: 400;
-  font-size: 1rem;
+.skillTitle {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.skillDesc {
+  font-weight: var(--font-weight-normal);
+  font-size: clamp(1rem, 1vw, 1.125rem);
   max-width: 51rem;
-  padding: 0 2rem;
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
 }
-.skillBars{
-  margin: 1.5rem;
-  width: 100vw;
-  max-width: 80%;
+
+.skillBars {
+  margin: 0 auto var(--space-lg);
+  width: 80%;
+  max-width: 100%;
   text-align: left;
+  display: grid;
+  gap: var(--space-md);
 }
-.skillbar{
-  display: flex;
-  margin: 1rem;
-  padding: 1.5rem 2rem;
-  border-radius: 0.5rem;
-  background-color: gray;
+
+.skillbar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-skillbar);
+  transition: background-color var(--transition-speed) ease-in-out,
+              transform var(--transition-speed) ease-in-out;
+  cursor: default;
 }
-.skillBarImg
-{
+
+.skillbar:hover,
+.skillbar:focus-within {
+  background-color: var(--color-bg-skillbar-hover);
+  transform: scale(1.03);
+  outline: none;
+}
+
+.skillBarImg {
   object-fit: cover;
   height: 3rem;
   width: 3rem;
-  margin-right: 2rem;
+  margin-right: var(--space-md);
+  border-radius: 0.25rem;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  user-select: none;
+  flex-shrink: 0;
 }
-.skillBarText>p{
-  font-size: 0.9rem;
-  font-weight: 200;
 
+.skillBarText > p {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  font-weight: var(--font-weight-light);
+  margin: 0;
+  color: var(--color-text-secondary);
 }
-@media screen and (mx-width:480px) {
-  .skillBarText>p{
-    font-size: 3w;
+
+.skillBarText > h2 {
+  margin: 0 0 0.25rem 0;
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+@media screen and (max-width: 480px) {
+  .skillBars {
+    width: 100%;
+    padding: 0 1rem;
+    gap: var(--space-sm);
   }
-  .skillBarImg{
+
+  .skillbar {
+    grid-template-columns: 3rem 1fr;
+    padding: var(--space-sm);
+  }
+
+  .skillBarImg {
     height: 2.25rem;
-    width:2.25rem ;
+    width: 2.25rem;
+    margin-right: var(--space-xs);
   }
-  .skillBarText>h2{
+
+  .skillBarText > p {
+    font-size: 3vw;
+  }
+
+  .skillBarText > h2 {
     font-size: 5vw;
   }
 }
